@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Ejercicio 2 — Análisis Web — Portafolio</title>
+<link rel="stylesheet" href="style.css">
+<style>
+  .analysis-section {
+    margin-bottom: 36px;
+    padding-bottom: 24px;
+    border-bottom: 1px solid rgba(220, 235, 255, 0.1);
+  }
+
+  .analysis-section:last-of-type {
+    border-bottom: none;
+    margin-bottom: 10px;
+    padding-bottom: 0;
+  }
+
+  .analysis-tag {
+    display: inline-block;
+    font-size: 0.72rem;
+    letter-spacing: 0.05em;
+    color: var(--accent-amber);
+    font-weight: 700;
+    text-transform: uppercase;
+    margin-bottom: 6px;
+  }
+
+  .site-title {
+    font-size: clamp(1.3rem, 2.5vw, 1.6rem);
+    font-weight: 700;
+    color: var(--white);
+    margin: 0 0 16px;
+  }
+
+  .summary-card {
+    background: rgba(255, 255, 255, 0.02);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    border-radius: 6px;
+    padding: 18px 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+  }
+
+  .summary-card p {
+    margin: 0;
+    color: var(--ice);
+    font-size: 0.92rem;
+    line-height: 1.55;
+  }
+
+  .summary-card strong {
+    color: var(--white);
+  }
+
+  .site-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    margin-top: 4px;
+    color: var(--cyan);
+    font-size: 0.85rem;
+    font-weight: 600;
+    text-decoration: none;
+    transition: color 0.2s ease, transform 0.2s ease;
+    width: fit-content;
+  }
+
+  .site-link:hover {
+    color: var(--white);
+    transform: translateX(3px);
+  }
+
+  code {
+    background: rgba(77, 159, 255, 0.12);
+    color: var(--cyan);
+    padding: 2px 6px;
+    border-radius: 4px;
+    font-size: 0.85em;
+  }
+</style>
+</head>
+<body>
+  <a href="entregas.html" class="back-link">◂ Volver</a>
+
+  <div class="page">
+    <div class="stage">
+      <div class="content-block wide">
+        <h1 class="panel-title">Encargo: Análisis de Sitio y Plataforma Web</h1>
+
+        <!-- BIOBIOCHILE -->
+        <article class="analysis-section">
+          <span class="analysis-tag">Sitio Web</span>
+          <h2 class="site-title">BioBioChile</h2>
+
+          <div class="summary-card">
+            <p><strong>Tipo de layout:</strong> Corresponde a una <em>Página Editorial / Multicolumna</em>. Su objetivo central es ordenar una gran cantidad de noticias y notas secundarias en un espacio acotado.</p>
+            
+            <p><strong>Scroll y fijación:</strong> La mayor parte del sitio se mueve de forma continua, pero el menú superior usa <code>position: sticky</code>; al hacer scroll hacia abajo se compacta y queda anclado arriba para tener siempre a mano el logo, las secciones y la señal de radio.</p>
+
+            <p><strong>Columnas y versión móvil:</strong> En pantalla completa organiza el contenido con <em>CSS Grid</em> y <em>Flexbox</em> en dos áreas claras: una columna principal ancha a la izquierda con las notas fuertes y un <em>sidebar</em> a la derecha para "lo más leído" y publicidad. Al achicar la ventana a tamaño celular, la grilla colapsa a una sola columna vertical y el menú se esconde dentro de un botón de hamburguesa.</p>
+
+            <p><strong>Opinión y ajustes:</strong> La tipografía grande ayuda a leer rápido las noticias del día, pero el exceso de anuncios sin espacio reservado hace que el contenido salte bruscamente al cargar. Arreglaría esos contenedores de publicidad para que la lectura no se interrumpa.</p>
+
+            <a href="https://www.biobiochile.cl/" target="_blank" rel="noopener noreferrer" class="site-link">Visitar biobiochile.cl ↗</a>
+          </div>
+        </article>
+
+        <!-- MERCADO LIBRE -->
+        <article class="analysis-section">
+          <span class="analysis-tag">Plataforma Web</span>
+          <h2 class="site-title">Mercado Libre</h2>
+
+          <div class="summary-card">
+            <p><strong>Tipo de layout:</strong> Funciona como una <em>Plataforma Web interactiva</em> enfocada en transacciones, priorizando la búsqueda directa, carruseles de ofertas y catálogos dinámicos.</p>
+
+            <p><strong>Scroll y fijación:</strong> El header amarillo principal se mantiene anclado arriba mediante <code>position: sticky</code>, asegurando que la barra de búsqueda y el carrito de compras nunca se pierdan de vista mientras recorres la lista de artículos.</p>
+
+            <p><strong>Columnas y versión móvil:</strong> En el catálogo combina una barra lateral izquierda fija para los filtros (precio, marca, envíos) y una grilla modular flexible para las tarjetas de productos. En celular, la barra lateral desaparece para no apretar la pantalla y se resume en un botón flotante de "Filtrar", mientras que los productos permiten deslizarse horizontalmente con el dedo de forma natural.</p>
+
+            <p><strong>Opinión y ajustes:</strong> Las tarjetas estandarizadas con el precio en verde y el sello "Full" funcionan excelente para comparar rápido sin marearse. Sin embargo, la portada repite demasiadas filas de carruseles casi idénticas; convendría agrupar mejor los bloques por categorías para no fatigar la navegación inicial.</p>
+
+            <a href="https://www.mercadolibre.cl/" target="_blank" rel="noopener noreferrer" class="site-link">Visitar mercadolibre.cl ↗</a>
+          </div>
+        </article>
+
+      </div>
+    </div>
+  </div>
+
+  <script src="xmb.js"></script>
+  <script>
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape' || e.key === 'Backspace') {
+        if(window.sysAudio) window.sysAudio.back(); 
+        setTimeout(() => {
+          window.location.href = 'entregas.html';
+        }, 250);
+      }
+    });
+  </script>
+</body>
+</html>

@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Sobre mí — Portafolio</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <a href="inicio.html" class="back-link">◂ Volver</a>
+
+  <div class="page">
+    <div class="stage">
+      <div class="content-block wide">
+        <h1 class="panel-title">Sobre mí</h1>
+
+        <div class="panel-body">
+          <p>
+            Hola, soy <strong>Mateo Mackay</strong>, de 4° Año de Diseño en la Pontificia Universidad Católica de Valparaíso (e[ad]). 
+            Interesado y desarrollando habilidades en el diseño de objetos e interacción UX/UI. Me interesa la creación de elementos tanto físicos como digitales con los que la gente pueda interactuar tanto de forma recreativa como con algún fin en mente.
+          </p>
+        </div>
+
+        <div class="kv-list">
+          <div class="kv-row"><span class="k">Universidad</span><span class="v">Pontificia Universidad Católica de Valparaíso</span></div>
+          <div class="kv-row"><span class="k">Carrera</span><span class="v">Diseño</span></div>
+          <div class="kv-row"><span class="k">Semestre</span><span class="v">8°</span></div>
+          <div class="kv-row"><span class="k">Intereses</span><span class="v">Diseño de objetos, interacción UX/UI</span></div>
+        </div>
+
+        <div class="panel-body">
+          <p>Fuera del ámbito académico, me gusta mucho la música; escuchando prácticamente de todos los géneros; temas relacionados con la tecnología y la naturaleza, adentrándome de a poco en la estética o corriente solar punk.</p> 
+          <p>Me atrae mucho el conocer distintos lugares, su cultura, su gente, la historia y paisajes tanto naturales como urbanos. De la misma manera, desde pequeño me ha atraído el espacio, la ciencia ficción y en si el crear cualquier cosa, yo creo que debido a que siempre he consumido cosas en el ámbito del entretenimiento como el cine, los cómics, mangas, etc., siendo también una de las cosas que siempre me han llamado la atención: los videojuegos, jugando desde cabro chico en consolas y posteriormente (trágicamente) en el computador, donde me adentré no solamente en esta área de juegos o consumo desmedido de youtubers de la época, sino que también en cosas como la edición de videos y fotos, ya que siempre estaba con la cabeza metida en distintas formas de crear algo con lo que entretenerme y ojalá también a los demás. Es esto lo que yo creo que terminó siendo un gran gatillante al momento de elegir la carrera que quería cursar. Al ser una disciplina tan amplia y con tantas posibilidades.</p>
+          <p>También me gusta practicar varios deportes, en general la actividad física, desde el fútbol, handball, basketball, atletismo en su tiempo y ahora último la escalada.</p>
+          <p>No sé qué más poner, ni tampoco se me ocurre otro dato irrelevante poner de mi acá así que chaolin bombin.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script src="xmb.js"></script>
+  <script>
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape' || e.key === 'Backspace') {
+        if(window.sysAudio) window.sysAudio.back(); 
+        setTimeout(() => {
+          window.location.href = 'inicio.html';
+        }, 250);
+      }
+    });
+  </script>
+</body>
+</html>

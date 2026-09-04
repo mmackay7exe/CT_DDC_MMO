@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Inicio — Portafolio</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="page">
+    <div class="stage">
+      <div class="content-block">
+        <ul class="menu-list" id="menu-list">
+          <li class="menu-item" data-href="proyectos.html">Proyectos</li>
+          <li class="menu-item" data-href="entregas.html">Entregas</li>
+          <li class="menu-item" data-href="sobre-mi.html">Sobre mí</li>
+          <li class="menu-item" data-href="https://wiki.ead.pucv.cl/Mateo_Mackay">Wiki</li>
+          <li class="menu-item" data-href="contacto.html">Contacto</li>
+        </ul>
+
+        <div class="menu-actions">
+          <button id="action-enter" class="primary">Entrar</button>
+        </div>
+      </div>
+    </div>
+    
+    <div class="status-corner">Mateo Mackay · Pseudo-Portafolio</div>
+  </div>
+
+  <script src="xmb.js"></script>
+  <script>
+    const items = Array.from(document.querySelectorAll('.menu-item'));
+    
+    const previewCopy = {
+      'proyectos.html': 'Trabajos realizados durante la carrera y de forma independiente.',
+      'entregas.html': 'Registro de encargos y entregas a lo largo del semestre en curso.',
+      'https://wiki.ead.pucv.cl/Mateo_Mackay': 'Registro oficial de mis proyectos y bitácora en la Wiki de la EAD.',
+      'sobre-mi.html': 'Quién soy, qué estudio y qué me interesa.',
+      'contacto.html': 'Formas de contactarme.'
+    };
+    let idx = 0;
+
+    function render() {
+      items.forEach((it, i) => it.classList.toggle('active', i === idx));
+    }
+
+    function move(delta) {
+      idx = (idx + delta + items.length) % items.length;
+      render();
+    }
+
+    function enter() {
+      if(window.sysAudio) window.sysAudio.click(); 
+      
+      const url = items[idx].dataset.href;
+      if (url.startsWith('http')) {
+        window.open(url, '_blank');
+      } else {
+        // Retraso para escuchar el sonido antes de navegar
+        setTimeout(() => {
+          window.location.href = url;
+        }, 250);
+      }
+    }
+
+    function preview() {
+      alert(previewCopy[items[idx].dataset.href]);
+    }
+
+    items.forEach((it, i) => {
+      it.addEventListener('click', () => {
+        if (i === idx) { enter(); return; }
+        idx = i;
+        render();
+      });
+    });
+
+    document.getElementById('action-enter').addEventListener('click', enter);
+
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'ArrowDown') move(1);
+      else if (e.key === 'ArrowUp') move(-1);
+      else if (e.key === 'Enter') enter();
+    });
+
+    render();
+  </script>
+</body>
+</html>

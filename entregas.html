@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Entregas — Portafolio</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <a href="inicio.html" class="back-link">◂ Volver</a>
+
+  <div class="page">
+    <div class="stage">
+      <div class="content-block wide">
+        <h1 class="panel-title">Entregas</h1>
+
+        <div class="card-grid">
+          
+          <article class="xmb-card" tabindex="0" onclick="window.location.href='ejercicio-1.html'">
+            
+            <h3>Encargo 1: Réplica de Servicios Estudiantiles y Deportes</h3>
+            <p>Réplica digital de la plataforma de servicios estudiantiles y deportes, adaptada a la estructura y directrices del encargo.</p>
+            <div class="stack">
+              
+            </div>
+          </article>
+
+          <article class="xmb-card" tabindex="0" onclick="window.location.href='ejercicio-2.html'">
+            
+            <h3>Encargo 2: Análisis de Sitio y Plataforma Web</h3>
+            <p>Estudio comparativo de arquitectura de información, comportamiento de scroll, grillas CSS y adaptabilidad responsive entre BioBioChile y Mercado Libre.</p>
+            <div class="stack">
+              
+            </div>
+          </article>
+
+          <article class="xmb-card" tabindex="0">
+            
+            <h3>Encargo X: </h3>
+            <p>???</p>
+            <div class="stack">
+              
+            </div>
+          </article>
+
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script src="xmb.js"></script>
+  <script>
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape' || e.key === 'Backspace') {
+        if(window.sysAudio) window.sysAudio.back(); 
+        setTimeout(() => {
+          window.location.href = 'inicio.html';
+        }, 250);
+      }
+    });
+  </script>
+</body>
+</html>

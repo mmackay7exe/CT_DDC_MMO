@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Contacto — Portafolio</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <a href="inicio.html" class="back-link">◂ Volver</a>
+
+  <div class="page">
+    <div class="stage">
+      <div class="content-block wide">
+        <h1 class="panel-title">Contacto</h1>
+
+        <div class="contact-grid">
+          <div class="contact-list">
+            <div class="kv-row"><span class="k">Correo</span><span class="v">mateo.mackay.o@mail.pucv.cl</span></div>
+            <div class="kv-row"><span class="k">Ubicación</span><span class="v">Villa Alemana, Chile</span></div>
+          </div>
+
+          <form id="contact-form" onsubmit="return false;">
+            <div class="field">
+              <label for="name">Nombre</label>
+              <input id="name" type="text" placeholder="Tu nombre" required>
+            </div>
+            <div class="field">
+              <label for="email">Correo</label>
+              <input id="email" type="email" placeholder="tu@correo.com" required>
+            </div>
+            <div class="field">
+              <label for="msg">Mensaje</label>
+              <textarea id="msg" rows="4" placeholder="Escribe tu mensaje..." required></textarea>
+            </div>
+            <button class="submit-btn" type="submit">Enviar</button>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script src="xmb.js"></script>
+  <script>
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape' || e.key === 'Backspace') {
+        if(window.sysAudio) window.sysAudio.back(); 
+        setTimeout(() => {
+          window.location.href = 'inicio.html';
+        }, 250);
+      }
+    });
+
+    document.getElementById('contact-form').addEventListener('submit', () => {
+      alert('Formulario de ejemplo: conecta esto a un servicio de envío de correos (Formspree, EmailJS, etc.) para que funcione de verdad.');
+    });
+  </script>
+</body>
+</html>

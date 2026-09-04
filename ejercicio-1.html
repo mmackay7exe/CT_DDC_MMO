@@ -1,0 +1,315 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Réplica Servicios Estudiantiles — Portafolio</title>
+<link rel="stylesheet" href="style.css">
+<style>
+  /* --- 1. APAGAR EL ENTORNO XMB Y BLOQUEAR SCROLL --- */
+  .xmb-bg, .status-corner { display: none !important; }
+  
+  body, html {
+    background-color: #ffffff !important;
+    overflow: hidden !important; /* Bloquea el scroll por completo */
+    height: 100vh !important; /* Fija la altura al 100% de la ventana */
+    margin: 0;
+    padding: 0;
+  }
+
+  /* --- 2. ADAPTAR EL BOTÓN VOLVER --- */
+  .back-link {
+    background-color: #162441 !important; 
+    color: #ffffff !important;
+    border: none !important;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+    z-index: 100;
+  }
+  .back-link:hover {
+    background-color: #f48a1c !important; 
+    transform: translateX(-4px);
+  }
+
+  /* --- 3. VARIABLES Y ESTRUCTURA MAESTRA --- */
+  :root {
+    --replica-orange: #f48a1c;
+    --replica-dark-blue: #162441;
+    --replica-light-grey: #f5f6f8;
+    --replica-text-dark: #212529;
+    --replica-text-grey: #6c757d;
+  }
+
+  .replica-wrapper {
+    width: 100vw;
+    height: 100vh; /* Ocupa exactamente toda la pantalla */
+    display: flex;
+    flex-direction: column; /* Apila arriba y abajo */
+    font-family: 'Inter', 'Segoe UI', sans-serif;
+    color: var(--replica-text-dark);
+  }
+
+  /* --- 4. SECCIÓN SUPERIOR (Se ajusta al contenido) --- */
+  .replica-container-centered {
+    max-width: 1200px;
+    width: 100%;
+    margin: 0 auto;
+    padding: 80px 40px 30px; /* Padding top deja espacio al botón volver */
+    flex-shrink: 0; /* Evita que esta sección se aplaste */
+  }
+
+  .replica-section-top {
+    display: flex;
+    gap: 40px;
+  }
+
+  .replica-left-header {
+    flex: 1;
+    min-width: 300px;
+  }
+
+  .replica-left-header h1 {
+    font-weight: 700;
+    font-size: clamp(2rem, 3vw, 2.6rem); /* Ligeramente más pequeño para no desbordar */
+    margin: 0 0 16px;
+    line-height: 1.1;
+    color: #000;
+  }
+
+  .replica-hr-top {
+    border: none;
+    height: 4px;
+    background-color: var(--replica-orange);
+    width: 50px;
+    margin: 0 0 20px;
+    border-radius: 2px;
+  }
+
+  .replica-left-header p {
+    color: var(--replica-text-grey);
+    font-size: 0.95rem;
+    line-height: 1.5;
+    margin: 0 0 24px;
+  }
+
+  .replica-grid-top {
+    flex: 1.3;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 16px;
+  }
+
+  .replica-card-top {
+    background-color: var(--replica-light-grey);
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  .replica-card-category {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 0.75rem;
+    color: var(--replica-text-grey);
+  }
+
+  .replica-card-category .square {
+    width: 8px;
+    height: 8px;
+    background-color: var(--replica-text-dark);
+  }
+
+  .replica-card-top h3 {
+    font-weight: 700;
+    font-size: 1rem;
+    margin: 0;
+    line-height: 1.3;
+    color: var(--replica-text-dark);
+  }
+
+  /* --- 5. SECCIÓN INFERIOR (Rellena el espacio sobrante) --- */
+  .replica-section-bottom-bg {
+    background-color: var(--replica-light-grey);
+    width: 100%;
+    flex-grow: 1; /* Esto hace que el fondo gris rellene todo el espacio hasta abajo */
+    display: flex;
+    align-items: center; /* Centra el bloque interior verticalmente */
+    padding: 20px 40px;
+  }
+
+  .replica-section-bottom {
+    max-width: 1200px;
+    width: 100%;
+    margin: 0 auto;
+    display: flex;
+    align-items: stretch; /* ESTO HACE QUE TEXTO E IMAGEN MIDAN LO MISMO */
+    background-color: #ffffff;
+  }
+
+  .replica-sports-text {
+    flex: 1;
+    background-color: var(--replica-dark-blue);
+    color: #ffffff;
+    padding: 40px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+  }
+
+  .replica-sports-category {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 0.75rem;
+    color: rgba(255, 255, 255, 0.7);
+    margin-bottom: 20px;
+  }
+
+  .replica-sports-category .square {
+    width: 8px;
+    height: 8px;
+    background-color: rgba(255, 255, 255, 0.6);
+  }
+
+  .replica-sports-text h1 {
+    font-weight: 700;
+    font-size: clamp(1.8rem, 3vw, 2.4rem);
+    margin: 0 0 16px;
+    line-height: 1.1;
+  }
+
+  .replica-hr-bottom {
+    border: none;
+    height: 4px;
+    background-color: rgba(255, 255, 255, 0.3);
+    width: 50px;
+    margin: 0 0 20px;
+    border-radius: 2px;
+  }
+
+  .replica-sports-text p {
+    font-size: 0.9rem;
+    line-height: 1.5;
+    margin: 0 0 24px;
+    color: rgba(255, 255, 255, 0.8);
+  }
+
+  .replica-sports-image {
+    flex: 1.3;
+    position: relative; /* Clave para el truco de la altura perfecta */
+  }
+
+  .replica-sports-image img {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+  }
+
+  /* --- 6. BOTONES --- */
+  .replica-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    background-color: var(--replica-orange);
+    color: #ffffff;
+    border: none;
+    padding: 10px 20px;
+    font-family: inherit;
+    font-size: 0.85rem;
+    font-weight: 600;
+    text-decoration: none;
+    transition: background-color 0.2s ease, transform 0.2s ease;
+    cursor: pointer;
+    width: fit-content;
+  }
+
+  .replica-btn:hover {
+    background-color: #d87612;
+    transform: translateY(-2px);
+  }
+</style>
+</head>
+<body>
+  
+  <a href="entregas.html" class="back-link">◂ Volver</a>
+
+  <main class="replica-wrapper">
+    
+    <div class="replica-container-centered">
+      <div class="replica-section-top">
+        
+        <div class="replica-left-header">
+          <h1>Dirección de Servicios Estudiantiles</h1>
+          <hr class="replica-hr-top">
+          <p>El trabajo colaborativo, sistemático y permanente en <strong>investigación y creación</strong>, realizado en la Universidad de Concepción, es una forma válida de alcanzar altos niveles de <strong>calidad y pertinencia</strong>.</p>
+          <a href="#" class="replica-btn">Conocer más<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path><polyline points="15 3 21 3 21 9"></polyline><line x1="10" y1="14" x2="21" y2="3"></line></svg></a>
+        </div>
+
+        <div class="replica-grid-top">
+          <article class="replica-card-top">
+            <div class="replica-card-category"><span class="square"></span>Deportes</div>
+            <h3>Actividades masivas y recreativas</h3>
+          </article>
+          <article class="replica-card-top">
+            <div class="replica-card-category"><span class="square"></span>Salud</div>
+            <h3>Recepción de certificados médicos</h3>
+          </article>
+          <article class="replica-card-top">
+            <div class="replica-card-category"><span class="square"></span>Bienestar Estudiantil</div>
+            <h3>Tarjeta Nacional Estudiantil</h3>
+          </article>
+          <article class="replica-card-top">
+            <div class="replica-card-category"><span class="square"></span>Actividades extraprogramáticas</div>
+            <h3>Cursos Artísticos y Culturales de libre participación</h3>
+          </article>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- Zona gris que se estira automáticamente para llenar la pantalla -->
+    <div class="replica-section-bottom-bg">
+      <div class="replica-section-bottom">
+        
+        <div class="replica-sports-text">
+          <div class="replica-sports-category"><span class="square"></span>Unidad de Deportes DISE</div>
+          <h1>Talleres deportivos</h1>
+          <hr class="replica-hr-bottom">
+          <p>Esta Unidad es la encargada de generar instancias deportivas, recreativas y de actividades masivas de integración para la formación integral y de excelencia. Su objetivo principal es entregar a los y las estudiantes las herramientas necesarias para su desarrollo integral al interior de la Universidad y ser la fuente motivadora y precursora de cambios positivos tanto en el aspecto físico como en el mental, a través de difusión o promoción de estilos de vida saludables.</p>
+          <a href="#" class="replica-btn">Visita nuestros talleres<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path><polyline points="15 3 21 3 21 9"></polyline><line x1="10" y1="14" x2="21" y2="3"></line></svg></a>
+        </div>
+
+        <div class="replica-sports-image">
+          <img src="assets/fotoejercicio3.png" alt="Jugadoras de fútbol UdeC">
+        </div>
+
+      </div>
+    </div>
+
+  </main>
+
+  <script src="xmb.js"></script>
+  <script>
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape' || e.key === 'Backspace') {
+        if(window.sysAudio) window.sysAudio.back(); 
+        setTimeout(() => {
+          window.location.href = 'entregas.html';
+        }, 250);
+      }
+    });
+
+    document.querySelectorAll('.replica-btn').forEach(btn => {
+      btn.addEventListener('click', (e) => {
+        e.preventDefault();
+        if(window.sysAudio) window.sysAudio.click();
+      });
+    });
+  </script>
+</body>
+</html>

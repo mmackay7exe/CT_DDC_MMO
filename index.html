@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>Portafolio — Mateo Mackay</title>
+  <style>
+    /* El iframe ocupa toda la pantalla, escondiendo el truco */
+    body, html { margin: 0; padding: 0; width: 100%; height: 100%; overflow: hidden; background: #000; }
+    iframe { width: 100%; height: 100%; border: none; }
+  </style>
+</head>
+<body>
+  <!-- Reproductores de audio ocultos -->
+  <audio id="audio-bg" src="assets/bg-sound.mp3" loop></audio>
+  <audio id="audio-click" src="assets/click.mp3"></audio>
+  <audio id="audio-back" src="assets/back.mp3"></audio>
+  <audio id="audio-hover" src="assets/hover.mp3"></audio>
+
+  <!-- El visor donde cargarán tus páginas -->
+  <iframe id="main-frame" src="intro.html"></iframe>
+</body>
+</html>

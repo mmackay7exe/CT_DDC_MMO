@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Proyectos — Portafolio</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <a href="inicio.html" class="back-link">◂ Volver</a>
+
+  <div class="page">
+    <div class="stage">
+      <div class="content-block wide">
+        <h1 class="panel-title">Proyectos</h1>
+
+        <div class="card-grid">
+          
+          <article class="xmb-card" tabindex="0" onclick="window.open('https://wiki.ead.pucv.cl/PolkUp', '_blank')">
+            <div style="width: 100%; height: 160px; overflow: hidden; border-radius: 4px; margin-bottom: 12px;">
+              <img src="assets/1200px-Portada_PolkUp.png" alt="PolkUp - Fisico" style="width: 100%; height: 100%; object-fit: cover; opacity: 0.9;">
+            </div>
+            <span class="tag">TALLER DE INTERACCIÓN 2026</span>
+            <h3>PolkUp - Fisico</h3>
+            <p>Un juego de mesa de estrategia y movimiento tridimensional donde los jugadores deben ascender una torre modular que cambia constantemente, utilizando únicamente dos varillas como puntos de apoyo.</p>
+            <div class="stack">
+              <span>Modelado 3D</span><span>Fabricación</span><span>IxD</span><span>Diseño de experiencias</span>
+            </div>
+          </article>
+
+          <article class="xmb-card" tabindex="0" onclick="window.open('https://mmackay7exe.github.io/PolkUp---Mateo-Mackay-O/', '_blank')">
+            <div style="width: 100%; height: 160px; overflow: hidden; border-radius: 4px; margin-bottom: 12px;">
+              <img src="assets/IPEFTIxDMMO.gif" alt="PolkUp - Interfaz Expresiva" style="width: 100%; height: 100%; object-fit: cover; opacity: 0.9;">
+            </div>
+            <span class="tag">TALLER DE INTERACCIÓN 2026</span>
+            <h3>PolkUp - Interfaz Expresiva</h3>
+            <p>Una interfaz expresiva que consolida el paso de lo fisico a una página informativa que antecede hacia una experiencia digital de comportamiento. Donde se integra un modelo tridimensional con nodos cromáticos, anomalías lógicas, sonido reactivo y consecuencias de avance o retroceso.</p>
+            <div class="stack">
+              <span>UI design</span><span>HTML</span><span>CSS</span><span>JS</span><span>Modelado 3D</span>
+            </div>
+          </article>
+
+          <article class="xmb-card" tabindex="0" onclick="window.open('https://wiki.ead.pucv.cl/Mateo_Mackay/Secuencia_de_lo_leve,_ritual_de_lo_m%C3%ADnimo', '_blank')">
+            <div style="width: 100%; height: 160px; overflow: hidden; border-radius: 4px; margin-bottom: 12px;">
+              <img src="assets/1200px-PORTADAPROYECTOFINALTAC2025MM.jpg" alt="Secuencia de lo leve, ritual de lo mínimo" style="width: 100%; height: 100%; object-fit: cover; opacity: 0.9;">
+            </div>
+            <span class="tag">TALLER DE ALGORITMOS CINÉTICOS 2025</span>
+            <h3>Secuencia de lo leve, ritual de lo mínimo</h3>
+            <p>Una mesa-lámpara transformativa que materializa la penumbra nocturna mediante una secuencia cinética y lumínica. Donde el acto de posar un teléfono oculta el dispositivo y despliega una estructura de origami emergente, proyectando luz fragmentada, vibración y sombras que suspenden lo cotidiano en una atmósfera de contemplación mínima.</p>
+            <div class="stack">
+              <span>Modelado 3D</span><span>Fabricación</span><span>Diseño de Objetos</span>
+            </div>
+          </article>
+
+          <article class="xmb-card" tabindex="0" onclick="window.open('https://wiki.ead.pucv.cl/Proyecto_final_-_Optimizaci%C3%B3n_App_Junaeb', '_blank')">
+            <div style="width: 100%; height: 160px; overflow: hidden; border-radius: 4px; margin-bottom: 12px;">
+              <img src="assets/APPJUNAEB.png" alt="Optimización App Junaeb" style="width: 100%; height: 100%; object-fit: cover; opacity: 0.9;">
+            </div>
+            <span class="tag">DISEÑO DE EXPERIENCIA DE USUARIO 2026</span>
+            <h3>Optimización App Junaeb</h3>
+            <p>Una propuesta de rediseño UX/UI que optimiza el uso cotidiano de la app Ticket JUNAEB en beneficio del estudiante. Donde se articula la consulta de saldo, geolocalización de comercios y pasarela de pago en un flujo unificado y ágil, mitigando la fricción operativa y entregando certeza en cada transacción.</p>
+            <div class="stack">
+              <span>UX</span><span>UI</span><span>UX research</span><span>Figma</span><span>Prototipado de interfaces</span>
+            </div>
+          </article>
+
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script src="xmb.js"></script>
+  <script>
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape' || e.key === 'Backspace') {
+        if(window.sysAudio) window.sysAudio.back(); 
+        setTimeout(() => {
+          window.location.href = 'inicio.html';
+        }, 250);
+      }
+    });
+  </script>
+</body>
+</html>
