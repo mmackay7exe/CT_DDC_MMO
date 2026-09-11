@@ -164,28 +164,61 @@ document.addEventListener('DOMContentLoaded', () => {
 });
 
 // ==========================================
-// --- SISTEMA DE AUDIO REVISADO ---
+// --- SISTEMA DE AUDIO REVISADO (sin iframe) ---
+// Cada página tiene sus propios <audio>. La música de fondo se
+// sincroniza entre navegaciones reales de página vía sessionStorage.
 // ==========================================
 window.sysAudio = {
   click: () => { 
     try { 
-      const btn = window.parent.document.getElementById('audio-click');
+      const btn = document.getElementById('audio-click');
       if (btn) { btn.currentTime = 0; btn.volume = 0.8; btn.play().catch(()=>{}); }
     } catch(e){} 
   },
   back: () => { 
     try { 
-      const bck = window.parent.document.getElementById('audio-back');
+      const bck = document.getElementById('audio-back');
       if (bck) { bck.currentTime = 0; bck.volume = 0.9; bck.play().catch(()=>{}); }
     } catch(e){} 
   },
   hover: () => {
     try {
-      const hvr = window.parent.document.getElementById('audio-hover');
+      const hvr = document.getElementById('audio-hover');
       if (hvr) { hvr.currentTime = 0; hvr.volume = 0.2; hvr.play().catch(()=>{}); }
     } catch(e){}
   }
 };
+
+// --- Continuidad de la música de fondo entre páginas ---
+// Como ya no hay iframe, cada carga de página es un documento nuevo.
+// Guardamos en sessionStorage si la música estaba sonando y en qué
+// segundo iba; al cargar la siguiente página, la retomamos ahí mismo.
+// (Los navegadores permiten esto sin bloqueo de autoplay porque ya
+// hubo una interacción real del usuario en index.html.)
+(function bgContinuity() {
+  document.addEventListener('DOMContentLoaded', () => {
+    const bg = document.getElementById('audio-bg');
+    if (!bg) return;
+
+    const wasPlaying = sessionStorage.getItem('bgPlaying') === 'true';
+    const savedTime = parseFloat(sessionStorage.getItem('bgTime') || '0');
+
+    if (wasPlaying) {
+      bg.volume = 0.4;
+      bg.currentTime = savedTime || 0;
+      bg.play().catch(() => { /* si el navegador bloquea, seguirá sonando en la próxima interacción */ });
+    }
+
+    const saveState = () => {
+      sessionStorage.setItem('bgPlaying', String(!bg.paused));
+      sessionStorage.setItem('bgTime', String(bg.currentTime));
+    };
+
+    setInterval(saveState, 1000);
+    window.addEventListener('pagehide', saveState);
+    window.addEventListener('beforeunload', saveState);
+  });
+})();
 
 // 1. SOLUCIÓN AL SPAM DE HOVER (Bloqueo de repetición)
 let lastHovered = null;

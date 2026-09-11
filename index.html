@@ -1,22 +1,159 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-  <meta charset="UTF-8">
-  <title>Portafolio — Mateo Mackay</title>
-  <style>
-    /* El iframe ocupa toda la pantalla, escondiendo el truco */
-    body, html { margin: 0; padding: 0; width: 100%; height: 100%; overflow: hidden; background: #000; }
-    iframe { width: 100%; height: 100%; border: none; }
-  </style>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Cargando — Portafolio</title>
+<link rel="stylesheet" href="style.css">
+<style>
+  body {
+    margin: 0;
+    background: #000;
+    height: 100vh;
+    overflow: hidden; 
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  video {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    opacity: 0;
+    transition: opacity 0.4s ease;
+    z-index: 1;
+  }
+  .start-screen {
+    position: absolute;
+    inset: 0;
+    z-index: 10;
+    background: #000;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .start-btn {
+    background: none;
+    border: none;
+    color: var(--dim, #6b7078);
+    font-family: inherit;
+    font-size: 0.85rem;
+    letter-spacing: 0.08em;
+    cursor: pointer;
+    animation: promptBlink 1.6s ease-in-out infinite;
+    padding: 20px; 
+    width: 100%;
+    height: 100%;
+  }
+  @keyframes promptBlink {
+    0%, 100% { opacity: 0; }
+    50% { opacity: 1; }
+  }
+  .skip {
+    position: fixed;
+    top: 20px;
+    right: 24px;
+    font-size: 0.75rem;
+    color: var(--dim, #6b7078);
+    letter-spacing: 0.04em;
+    z-index: 30;
+    padding: 8px;
+    display: none;
+    background: none;
+    border: none;
+    cursor: pointer;
+    transition: color 0.2s ease;
+  }
+  .skip:hover { color: var(--cyan, #4d9fff); }
+  .fade-out {
+    animation: fadeOutAll 0.6s ease forwards;
+  }
+  @keyframes fadeOutAll {
+    to { opacity: 0; }
+  }
+</style>
 </head>
-<body>
-  <!-- Reproductores de audio ocultos -->
+<body id="boot-body">
+
+  <!-- Reproductores de audio: viven en esta página, y cada página del sitio
+       tiene su propia copia. xmb.js sincroniza la posición de audio-bg
+       entre páginas usando sessionStorage para que no se sienta "cortado". -->
   <audio id="audio-bg" src="assets/bg-sound.mp3" loop></audio>
   <audio id="audio-click" src="assets/click.mp3"></audio>
   <audio id="audio-back" src="assets/back.mp3"></audio>
   <audio id="audio-hover" src="assets/hover.mp3"></audio>
 
-  <!-- El visor donde cargarán tus páginas -->
-  <iframe id="main-frame" src="intro.html"></iframe>
+  <button class="skip" id="skip-btn">Saltar intro ▸</button>
+
+  <div class="start-screen" id="start-screen">
+    <button class="start-btn" id="start-btn">Haz clic aquí o pulsa cualquier tecla para iniciar</button>
+  </div>
+
+  <video id="intro-video" playsinline>
+    <source src="assets/ps2-intro.mp4" type="video/mp4">
+  </video>
+
+  <script src="xmb.js"></script>
+  <script>
+    const startScreen = document.getElementById('start-screen');
+    const startBtn = document.getElementById('start-btn');
+    const video = document.getElementById('intro-video');
+    const skipBtn = document.getElementById('skip-btn');
+    const bootBody = document.getElementById('boot-body');
+    
+    let hasStarted = false;
+    let navigated = false;
+
+    // Enciende la música de fondo (esto SÍ es un gesto real del usuario,
+    // así que el navegador lo permite sin restricciones).
+    function unlockAudio() {
+      try { 
+        const bg = document.getElementById('audio-bg');
+        if (bg && bg.paused) { 
+          bg.volume = 0.4; 
+          bg.play().catch(e => console.warn("Audio bloqueado por navegador")); 
+        }
+      } catch(e){ console.error("Error de audio."); } 
+    }
+
+    function goToHub() {
+      if (navigated) return;
+      navigated = true;
+      unlockAudio(); // Por si saltan la intro muy rápido
+      try { 
+        const click = document.getElementById('audio-click');
+        if(click) { click.currentTime = 0; click.play(); }
+      } catch(e){} 
+      
+      bootBody.classList.add('fade-out');
+      setTimeout(() => { window.location.href = 'inicio.html'; }, 550);
+    }
+
+    function startSequence() {
+      if (hasStarted) return;
+      hasStarted = true;
+
+      unlockAudio(); // Este es el clic clave que arranca todo el sonido
+
+      startScreen.style.display = 'none';
+      skipBtn.style.display = 'block';
+
+      video.style.opacity = '1';
+      video.play().catch(error => {
+        goToHub(); 
+      });
+    }
+
+    startBtn.addEventListener('click', startSequence);
+    startScreen.addEventListener('click', startSequence); 
+    document.addEventListener('keydown', startSequence);
+
+    video.addEventListener('ended', goToHub);
+    skipBtn.addEventListener('click', (e) => {
+      e.stopPropagation();
+      goToHub();
+    });
+  </script>
 </body>
 </html>
